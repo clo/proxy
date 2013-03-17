@@ -4,17 +4,13 @@ var credential = { 'ip-dumy-ch-bri-r-003' : { access: 'SSH', password: 'secret' 
 var response = "";
 
 http.createServer(function (req, res) {
-  console.log("request: " + req.method);
-  
   req.on("end", function () {
-    if (password!=''){
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-    var get = url.parse(req.headers.host).query;
-	console.log(get);
-	res.end(response);
+    if (response!=''){
+	  res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(response);
 	}else{
 	  res.writeHead(400, {'Content-Type': 'text/plain'});
-	  res.end(response);
+	  res.end('bad request');
 	}
   });
   
@@ -57,11 +53,6 @@ http.createServer(function (req, res) {
 	    response='TODO: SNMP';
 	  }else if (action=='SSH'){
 	    response='TODO: SSH';
-	  }else{
-	    response='bad request';
-	  }
-	  if (!keyFound){
-		console.log("no key found for " + device);
 	  }
 	}
   });
