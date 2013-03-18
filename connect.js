@@ -23,11 +23,11 @@ var options = {
 
 
 var req = http.request(options, function(res) {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  //console.log('STATUS: ' + res.statusCode);
+  //console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
   res.on('data', function (chunk) {
-    console.log('BODY: ' + chunk.toString());
+    console.log('STATUS: ' + res.statusCode + ' ANSWER: device=' + process.argv[2] + " " + chunk.toString());
   });
 });
 
